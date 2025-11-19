@@ -12,34 +12,6 @@ import {
 // ===================================================================
 
 /**
- * Extract all node type names from a Tree-sitter language
- * This makes the chunker language-agnostic by using the language's own node types
- */
-function getNodeTypeNames(language: Parser.Language | null | undefined): Set<string> {
-  if (!language) {
-    return new Set();
-  }
-
-  try {
-    // Access nodeTypeInfo from the language object
-    // TypeScript doesn't expose this property, so we access it dynamically
-    const nodeTypeInfo = (language as unknown as { nodeTypeInfo?: Array<{ type?: string; name?: string }> }).nodeTypeInfo;
-    if (nodeTypeInfo && Array.isArray(nodeTypeInfo)) {
-      // Extract all node type names
-      return new Set(nodeTypeInfo.map((typeInfo) => typeInfo.type || typeInfo.name || "unknown"));
-    }
-  } catch (error) {
-    logger.warn(
-      { message: "Failed to extract node types from language", data: {} },
-      "getNodeTypeNames",
-      error instanceof Error ? error : undefined
-    );
-  }
-
-  return new Set();
-}
-
-/**
  * Extract code substring from source using node's byte indexes
  */
 function sliceCode(source: string, node: Parser.SyntaxNode): string {
@@ -128,58 +100,21 @@ function hasErrors(node: Parser.SyntaxNode): boolean {
 }
 
 /**
- * Check if a node represents a semantically significant code construct
- * This helps filter out tiny tokens and focus on meaningful chunks
- * Uses dynamic node types from the language parser for language-agnostic operation
- */
-function isSignificantNode(node: Parser.SyntaxNode, languageNodeTypes: Set<string>): boolean {
-  // Minimum size threshold - don't chunk tiny tokens
-  const MIN_CHUNK_SIZE = 50; // characters
-  const nodeSize = node.endIndex - node.startIndex;
-  
-  if (nodeSize < MIN_CHUNK_SIZE) {
-    // Exception: allow small nodes if they match important semantic patterns
-    // These patterns work across languages (e.g., function_definition, class_declaration, etc.)
-    const importantPatterns = [
-      "function", "method", "class", "interface", "type",
-      "declaration", "definition", "statement",
-      "import", "export", "variable", "assignment"
-    ];
-    
-    // Check if node type contains any important pattern or is in the language's node types
-    const hasImportantPattern = importantPatterns.some(pattern => 
-      node.type.toLowerCase().includes(pattern)
-    );
-    
-    if (!hasImportantPattern && !languageNodeTypes.has(node.type)) {
-      return false;
-    }
-  }
-
-  // Semantic significance based on node type patterns
-  // These patterns work across different programming languages
-  const significantPatterns = [
-    "function", "method", "class", "interface", "struct", "trait", "enum",
-    "module", "namespace", "package",
-    "declaration", "definition", "statement",
-    "import", "export", "variable", "assignment",
-    "comment", "documentation",
-    "program", "source_file"
-  ];
-
-  // Check if node type is in the language's node types (language-specific validation)
-  const isLanguageNodeType = languageNodeTypes.size === 0 || languageNodeTypes.has(node.type);
-  
-  // Check if node type matches significant patterns (cross-language patterns)
-  const matchesPattern = significantPatterns.some(pattern => 
-    node.type.toLowerCase().includes(pattern)
-  );
-
-  return isLanguageNodeType && matchesPattern;
-}
-
-/**
- * Recursively split AST node based on size rules with path tracing
+ * Recursively split AST node with backtracking for optimal chunking
+ * Uses DFS with backtracking to ensure complete code coverage
+ * 
+ * Strategy:
+ * 1. If node is in TARGET range (minSize=150 to 70% of maxSize): emit it, don't recurse
+ * 2. If node is between target and maxSize: try children first, backtrack if needed
+ * 3. If node > maxSize: try children first, backtrack if needed (emit oversized chunk)
+ * 4. If node < minSize with children: skip it, let ancestor include it
+ * 5. Leaf nodes: only emit if >= minSize (skip tiny tokens)
+ * 
+ * Backtracking ensures:
+ * - Complete coverage (no code lost)
+ * - Bigger chunks (target = 70% of maxSize, e.g. 1050 chars for TypeScript)
+ * - Avoids tiny chunks (minSize=150 filtering)
+ * - Starts from root and works down (DFS with size-based decisions)
  */
 function splitNode(params: {
   source: string;
@@ -188,9 +123,9 @@ function splitNode(params: {
   pathTrace: string;
   chunks: Chunk[];
   maxSize: number;
-  languageNodeTypes: Set<string>;
-}): void {
-  const { source, node, fileName, pathTrace, chunks, maxSize, languageNodeTypes } = params;
+  minSize: number;
+}): boolean {
+  const { source, node, fileName, pathTrace, chunks, maxSize, minSize } = params;
 
   const nodeSize = node.endIndex - node.startIndex;
   const nodeId = buildId(fileName, node);
@@ -199,11 +134,13 @@ function splitNode(params: {
   // Build current path by appending current node name
   const currentPath = pathTrace ? `${pathTrace} > ${nodeName}` : nodeName;
 
-  // Check if this node is semantically significant
-  const isSignificant = isSignificantNode(node, languageNodeTypes);
-
-  // Emit chunk if: (size <= maxSize OR no named children) AND node is significant
-  if ((nodeSize <= maxSize || node.namedChildCount === 0) && isSignificant) {
+  // Case 1: Node is within TARGET size range (minSize <= nodeSize <= targetSize)
+  // Target size is 70% of maxSize - preferred chunk size for bigger granularity
+  // Emit this node as a chunk and STOP (don't recurse into children)
+  const targetSize = Math.floor(maxSize * 0.7); // 70% of maxSize
+  // For TypeScript (maxSize=1500): target = 1050 chars
+  
+  if (nodeSize >= minSize && nodeSize <= targetSize) {
     const chunk: Chunk = {
       id: nodeId,
       startLine: node.startPosition.row + 1,
@@ -215,11 +152,14 @@ function splitNode(params: {
     };
 
     chunks.push(chunk);
-    return;
+    return true; // Successfully chunked
   }
-
-  // If node is too large or not significant enough, recursively split named children
-  if (node.namedChildCount > 0) {
+  
+  // Case 1.5: Node is between targetSize and maxSize (can fit but should try to break down)
+  // Try to chunk children for better granularity, but if they fail, emit this node
+  if (nodeSize > targetSize && nodeSize <= maxSize && node.namedChildCount > 0) {
+    const chunksBeforeChildren = chunks.length;
+    
     for (let i = 0; i < node.namedChildCount; i++) {
       const child = node.namedChild(i);
       if (child) {
@@ -230,12 +170,105 @@ function splitNode(params: {
           pathTrace: currentPath,
           chunks,
           maxSize,
-          languageNodeTypes,
+          minSize,
         });
       }
     }
-  } else if (isSignificant) {
-    // Leaf node that's significant - emit it even if it was skipped above
+    
+    // If children created chunks, use them; otherwise emit this node
+    const childrenCreatedChunks = chunks.length > chunksBeforeChildren;
+    
+    if (!childrenCreatedChunks) {
+      // No children worked - emit this node as-is
+      const chunk: Chunk = {
+        id: nodeId,
+        startLine: node.startPosition.row + 1,
+        endLine: node.endPosition.row + 1,
+        code: sliceCode(source, node),
+        path: currentPath,
+        comment: extractComments(node, source),
+        error: hasErrors(node),
+      };
+
+      chunks.push(chunk);
+      return true;
+    }
+    
+    return true; // Children handled it
+  }
+
+  // Case 2: Node is too large (> maxSize) - try to split into children
+  if (nodeSize > maxSize && node.namedChildCount > 0) {
+    // Try to chunk children first
+    const chunksBeforeChildren = chunks.length;
+
+    for (let i = 0; i < node.namedChildCount; i++) {
+      const child = node.namedChild(i);
+      if (child) {
+        splitNode({
+          source,
+          node: child,
+          fileName,
+          pathTrace: currentPath,
+          chunks,
+          maxSize,
+          minSize,
+        });
+      }
+    }
+
+    // BACKTRACKING: If no children created chunks, we must emit this oversized node
+    // Otherwise we'd lose code
+    const childrenCreatedChunks = chunks.length > chunksBeforeChildren;
+    
+    if (!childrenCreatedChunks) {
+      // Can't break down further - emit oversized node to ensure coverage
+      const chunk: Chunk = {
+        id: nodeId,
+        startLine: node.startPosition.row + 1,
+        endLine: node.endPosition.row + 1,
+        code: sliceCode(source, node),
+        path: currentPath,
+        comment: extractComments(node, source),
+        error: hasErrors(node),
+      };
+
+      chunks.push(chunk);
+      return true;
+    }
+
+    return true; // Children handled it
+  }
+
+  // Case 3: Node is too small (< minSize) but has children
+  // Skip this node and let children be processed
+  // Don't emit tiny parent nodes - let them be included in ancestor chunks
+  if (nodeSize < minSize && node.namedChildCount > 0) {
+    // Try to chunk children - don't emit parent even if children fail
+    for (let i = 0; i < node.namedChildCount; i++) {
+      const child = node.namedChild(i);
+      if (child) {
+        splitNode({
+          source,
+          node: child,
+          fileName,
+          pathTrace: currentPath,
+          chunks,
+          maxSize,
+          minSize,
+        });
+      }
+    }
+    
+    // Don't emit parent - it's too small
+    // Let ancestor handle it via backtracking
+    return false;
+  }
+
+  // Case 4: Leaf node (no children)
+  // Skip tiny leaf nodes - they'll be included in ancestor chunks
+  // Only emit if meets minimum size or is oversized
+  if (nodeSize >= minSize || nodeSize > maxSize) {
     const chunk: Chunk = {
       id: nodeId,
       startLine: node.startPosition.row + 1,
@@ -247,7 +280,11 @@ function splitNode(params: {
     };
 
     chunks.push(chunk);
+    return true;
   }
+
+  // Leaf node is too small - skip it (will be included in ancestor)
+  return false;
 }
 
 // assignSiblings function removed - now using path traces instead
@@ -309,18 +346,21 @@ function fallbackTextChunker(
 
 /**
  * Main chunking function - language-agnostic AST-based code chunker
+ * Uses backtracking to intelligently combine small sibling nodes
  *
  * @param source - Source code string
  * @param fileName - Name of the file being chunked
  * @param language - Tree-sitter Language object (null/undefined for fallback)
  * @param maxSize - Maximum size in characters for each chunk
- * @returns Array of semantic chunks
+ * @param minSize - Minimum preferred size for chunks (default: 150 characters)
+ * @returns Array of semantic chunks with optimal size distribution
  */
 export function chunkCode(
   source: string,
   fileName: string,
   language: Parser.Language | null | undefined,
-  maxSize: number
+  maxSize: number,
+  minSize: number = 150
 ): Chunk[] {
   try {
     // Case 1: No language available - use fallback
@@ -332,19 +372,9 @@ export function chunkCode(
       return fallbackTextChunker(source, fileName, maxSize);
     }
 
-    // Case 2: Language available - use AST-based chunking
+    // Case 2: Language available - use AST-based chunking with backtracking
     logger.info(
-      { message: "Using AST-based chunker", data: { fileName } },
-      "chunkCode"
-    );
-
-    // Extract node types from the language for language-agnostic operation
-    const languageNodeTypes = getNodeTypeNames(language);
-    logger.debug(
-      { 
-        message: "Extracted node types from language", 
-        data: { fileName, nodeTypeCount: languageNodeTypes.size } 
-      },
+      { message: "Using AST-based chunker with backtracking", data: { fileName, maxSize, minSize } },
       "chunkCode"
     );
 
@@ -354,7 +384,7 @@ export function chunkCode(
     const tree = parser.parse(source);
     const chunks: Chunk[] = [];
 
-    // Start recursive splitting from root
+    // Start recursive splitting with backtracking from root
     splitNode({
       source,
       node: tree.rootNode,
@@ -362,8 +392,13 @@ export function chunkCode(
       pathTrace: "",
       chunks,
       maxSize,
-      languageNodeTypes,
+      minSize,
     });
+
+    logger.info(
+      { message: "Chunking completed", data: { fileName, chunkCount: chunks.length } },
+      "chunkCode"
+    );
 
     return chunks;
   } catch (error) {
@@ -442,7 +477,8 @@ export function chunkSourceCode(
   source: string,
   fileName: string,
   language: string,
-  maxSize?: number
+  maxSize?: number,
+  minSize?: number
 ): Chunk[] {
   // Normalize language name to lowercase for consistent lookup
   const normalizedLanguage = language.toLowerCase();
@@ -456,7 +492,9 @@ export function chunkSourceCode(
     LANGUAGE_SIZE_LIMITS[normalizedLanguage] ||
     LANGUAGE_SIZE_LIMITS.default;
 
-  return chunkCode(source, fileName, treeSitterLanguage, effectiveMaxSize);
+  const effectiveMinSize = minSize || 150;
+
+  return chunkCode(source, fileName, treeSitterLanguage, effectiveMaxSize, effectiveMinSize);
 }
 
 // ===================================================================

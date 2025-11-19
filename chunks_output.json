@@ -1,0 +1,2000 @@
+[
+  {
+    "id": "test_gap_4_6",
+    "startLine": 4,
+    "endLine": 6,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_6_7",
+    "startLine": 6,
+    "endLine": 7,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_7_8",
+    "startLine": 7,
+    "endLine": 8,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_8_10",
+    "startLine": 8,
+    "endLine": 10,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_10_11",
+    "startLine": 10,
+    "endLine": 11,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_13_15",
+    "startLine": 13,
+    "endLine": 15,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_15_16",
+    "startLine": 15,
+    "endLine": 16,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_16_17",
+    "startLine": 16,
+    "endLine": 17,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_17_19",
+    "startLine": 17,
+    "endLine": 19,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_19_20",
+    "startLine": 19,
+    "endLine": 20,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_24_26",
+    "startLine": 24,
+    "endLine": 26,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_32_34",
+    "startLine": 32,
+    "endLine": 34,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_40_42",
+    "startLine": 40,
+    "endLine": 42,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_42_43",
+    "startLine": 42,
+    "endLine": 43,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_49_51",
+    "startLine": 49,
+    "endLine": 51,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_51_52",
+    "startLine": 51,
+    "endLine": 52,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_52_53",
+    "startLine": 52,
+    "endLine": 53,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_53_54",
+    "startLine": 53,
+    "endLine": 54,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_54_56",
+    "startLine": 54,
+    "endLine": 56,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_56_57",
+    "startLine": 56,
+    "endLine": 57,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_57_58",
+    "startLine": 57,
+    "endLine": 58,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_58_59",
+    "startLine": 58,
+    "endLine": 59,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_59_60",
+    "startLine": 59,
+    "endLine": 60,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_60_61",
+    "startLine": 60,
+    "endLine": 61,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_61_63",
+    "startLine": 61,
+    "endLine": 63,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_63_64",
+    "startLine": 63,
+    "endLine": 64,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_64_65",
+    "startLine": 64,
+    "endLine": 65,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_65_66",
+    "startLine": 65,
+    "endLine": 66,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_66_68",
+    "startLine": 66,
+    "endLine": 68,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_68_69",
+    "startLine": 68,
+    "endLine": 69,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_71_73",
+    "startLine": 71,
+    "endLine": 73,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_73_74",
+    "startLine": 73,
+    "endLine": 74,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_76_78",
+    "startLine": 76,
+    "endLine": 78,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_78_79",
+    "startLine": 78,
+    "endLine": 79,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_81_83",
+    "startLine": 81,
+    "endLine": 83,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_83_84",
+    "startLine": 83,
+    "endLine": 84,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_84_85",
+    "startLine": 84,
+    "endLine": 85,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_85_86",
+    "startLine": 85,
+    "endLine": 86,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_91_93",
+    "startLine": 91,
+    "endLine": 93,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_93_94",
+    "startLine": 93,
+    "endLine": 94,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_104_106",
+    "startLine": 104,
+    "endLine": 106,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_106_107",
+    "startLine": 106,
+    "endLine": 107,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_119_121",
+    "startLine": 119,
+    "endLine": 121,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_121_122",
+    "startLine": 121,
+    "endLine": 122,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_124_126",
+    "startLine": 124,
+    "endLine": 126,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_126_127",
+    "startLine": 126,
+    "endLine": 127,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_127_129",
+    "startLine": 127,
+    "endLine": 129,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_129_130",
+    "startLine": 129,
+    "endLine": 130,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_134_136",
+    "startLine": 134,
+    "endLine": 136,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_136_137",
+    "startLine": 136,
+    "endLine": 137,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_177_179",
+    "startLine": 177,
+    "endLine": 179,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_179_180",
+    "startLine": 179,
+    "endLine": 180,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_225_227",
+    "startLine": 225,
+    "endLine": 227,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_227_228",
+    "startLine": 227,
+    "endLine": 228,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_250_252",
+    "startLine": 250,
+    "endLine": 252,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_252_253",
+    "startLine": 252,
+    "endLine": 253,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_294_296",
+    "startLine": 294,
+    "endLine": 296,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_296_297",
+    "startLine": 296,
+    "endLine": 297,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_309_311",
+    "startLine": 309,
+    "endLine": 311,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_311_312",
+    "startLine": 311,
+    "endLine": 312,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_331_333",
+    "startLine": 331,
+    "endLine": 333,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_333_334",
+    "startLine": 333,
+    "endLine": 334,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_338_340",
+    "startLine": 338,
+    "endLine": 340,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_344_346",
+    "startLine": 344,
+    "endLine": 346,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_346_347",
+    "startLine": 346,
+    "endLine": 347,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_361_363",
+    "startLine": 361,
+    "endLine": 363,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_363_364",
+    "startLine": 363,
+    "endLine": 364,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_374_376",
+    "startLine": 374,
+    "endLine": 376,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_376_377",
+    "startLine": 376,
+    "endLine": 377,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_387_389",
+    "startLine": 387,
+    "endLine": 389,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_389_390",
+    "startLine": 389,
+    "endLine": 390,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_398_400",
+    "startLine": 398,
+    "endLine": 400,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_400_401",
+    "startLine": 400,
+    "endLine": 401,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_405_407",
+    "startLine": 405,
+    "endLine": 407,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_407_408",
+    "startLine": 407,
+    "endLine": 408,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_408_409",
+    "startLine": 408,
+    "endLine": 409,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_409_411",
+    "startLine": 409,
+    "endLine": 411,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_411_412",
+    "startLine": 411,
+    "endLine": 412,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_414_416",
+    "startLine": 414,
+    "endLine": 416,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_418_420",
+    "startLine": 418,
+    "endLine": 420,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_420_421",
+    "startLine": 420,
+    "endLine": 421,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_421_422",
+    "startLine": 421,
+    "endLine": 422,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_422_424",
+    "startLine": 422,
+    "endLine": 424,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_424_425",
+    "startLine": 424,
+    "endLine": 425,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_430_432",
+    "startLine": 430,
+    "endLine": 432,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_432_433",
+    "startLine": 432,
+    "endLine": 433,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_437_439",
+    "startLine": 437,
+    "endLine": 439,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_439_440",
+    "startLine": 439,
+    "endLine": 440,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_442_444",
+    "startLine": 442,
+    "endLine": 444,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_444_445",
+    "startLine": 444,
+    "endLine": 445,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_447_449",
+    "startLine": 447,
+    "endLine": 449,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_449_450",
+    "startLine": 449,
+    "endLine": 450,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_450_451",
+    "startLine": 450,
+    "endLine": 451,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_451_453",
+    "startLine": 451,
+    "endLine": 453,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_453_454",
+    "startLine": 453,
+    "endLine": 454,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_458_460",
+    "startLine": 458,
+    "endLine": 460,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_460_461",
+    "startLine": 460,
+    "endLine": 461,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_461_462",
+    "startLine": 461,
+    "endLine": 462,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_462_462",
+    "startLine": 462,
+    "endLine": 462,
+    "code": " ",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_462_464",
+    "startLine": 462,
+    "endLine": 464,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_464_465",
+    "startLine": 464,
+    "endLine": 465,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_465_466",
+    "startLine": 465,
+    "endLine": 466,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_466_468",
+    "startLine": 466,
+    "endLine": 468,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_468_469",
+    "startLine": 468,
+    "endLine": 469,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_521_523",
+    "startLine": 521,
+    "endLine": 523,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_523_524",
+    "startLine": 523,
+    "endLine": 524,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_536_538",
+    "startLine": 536,
+    "endLine": 538,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_538_539",
+    "startLine": 538,
+    "endLine": 539,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_539_541",
+    "startLine": 539,
+    "endLine": 541,
+    "code": "\n\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_541_542",
+    "startLine": 541,
+    "endLine": 542,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_gap_544_545",
+    "startLine": 544,
+    "endLine": 545,
+    "code": "\n",
+    "path": "program > [gap]",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_1_4",
+    "startLine": 1,
+    "endLine": 4,
+    "code": "/**\n * Comprehensive TypeScript test file for the code chunker.\n * This file contains various TypeScript components to test AST parsing and chunking.\n */",
+    "path": "program > comment",
+    "comment": "/**\n * Comprehensive TypeScript test file for the code chunker.\n * This file contains various TypeScript components to test AST parsing and chunking.\n */",
+    "error": false
+  },
+  {
+    "id": "test_comment_6_6",
+    "startLine": 6,
+    "endLine": 6,
+    "code": "// Standard library imports",
+    "path": "program > comment",
+    "comment": "// Standard library imports",
+    "error": false
+  },
+  {
+    "id": "test_comment_7_7",
+    "startLine": 7,
+    "endLine": 7,
+    "code": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "path": "program > comment",
+    "comment": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "error": false
+  },
+  {
+    "id": "test_import_statement_8_8",
+    "startLine": 8,
+    "endLine": 8,
+    "code": "import { EventEmitter } from \"events\";",
+    "path": "program > import",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_10_10",
+    "startLine": 10,
+    "endLine": 10,
+    "code": "// Simple UUID generator for testing",
+    "path": "program > comment",
+    "comment": "// Simple UUID generator for testing",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_11_13",
+    "startLine": 11,
+    "endLine": 13,
+    "code": "function generateId(): string {\n  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_15_15",
+    "startLine": 15,
+    "endLine": 15,
+    "code": "// Type definitions",
+    "path": "program > comment",
+    "comment": "// Type definitions",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_16_16",
+    "startLine": 16,
+    "endLine": 16,
+    "code": "type UserRole = \"admin\" | \"user\" | \"guest\";",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_17_17",
+    "startLine": 17,
+    "endLine": 17,
+    "code": "type Status = \"active\" | \"inactive\" | \"pending\";",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_19_19",
+    "startLine": 19,
+    "endLine": 19,
+    "code": "// Interface definitions",
+    "path": "program > comment",
+    "comment": "// Interface definitions",
+    "error": false
+  },
+  {
+    "id": "test_interface_declaration_20_24",
+    "startLine": 20,
+    "endLine": 24,
+    "code": "interface BaseEntity {\n  id: string;\n  createdAt: Date;\n  updatedAt: Date;\n}",
+    "path": "program > interface",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_interface_declaration_26_32",
+    "startLine": 26,
+    "endLine": 32,
+    "code": "interface User extends BaseEntity {\n  name: string;\n  email: string;\n  role: UserRole;\n  status: Status;\n  metadata?: Record<string, unknown>;\n}",
+    "path": "program > interface",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_interface_declaration_34_40",
+    "startLine": 34,
+    "endLine": 40,
+    "code": "interface Product extends BaseEntity {\n  name: string;\n  price: number;\n  description: string;\n  category: string;\n  inStock: boolean;\n}",
+    "path": "program > interface",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_42_42",
+    "startLine": 42,
+    "endLine": 42,
+    "code": "// Generic interface",
+    "path": "program > comment",
+    "comment": "// Generic interface",
+    "error": false
+  },
+  {
+    "id": "test_interface_declaration_43_49",
+    "startLine": 43,
+    "endLine": 49,
+    "code": "interface Repository<T extends BaseEntity> {\n  findById(id: string): Promise<T | null>;\n  findAll(): Promise<T[]>;\n  create(entity: Omit<T, \"id\" | \"createdAt\" | \"updatedAt\">): Promise<T>;\n  update(id: string, entity: Partial<T>): Promise<T>;\n  delete(id: string): Promise<boolean>;\n}",
+    "path": "program > interface",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_51_51",
+    "startLine": 51,
+    "endLine": 51,
+    "code": "// Type aliases",
+    "path": "program > comment",
+    "comment": "// Type aliases",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_52_52",
+    "startLine": 52,
+    "endLine": 52,
+    "code": "type ID = string | number;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_53_53",
+    "startLine": 53,
+    "endLine": 53,
+    "code": "type Callback<T> = (data: T) => void;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_54_54",
+    "startLine": 54,
+    "endLine": 54,
+    "code": "type AsyncFunction<T, R> = (input: T) => Promise<R>;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_56_56",
+    "startLine": 56,
+    "endLine": 56,
+    "code": "// Module-level constants",
+    "path": "program > comment",
+    "comment": "// Module-level constants",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_57_57",
+    "startLine": 57,
+    "endLine": 57,
+    "code": "const API_BASE_URL = \"https://api.example.com\";",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_58_58",
+    "startLine": 58,
+    "endLine": 58,
+    "code": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "path": "program > comment",
+    "comment": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_59_59",
+    "startLine": 59,
+    "endLine": 59,
+    "code": "const MAX_RETRIES = 3;",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_60_60",
+    "startLine": 60,
+    "endLine": 60,
+    "code": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "path": "program > comment",
+    "comment": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_61_61",
+    "startLine": 61,
+    "endLine": 61,
+    "code": "const DEFAULT_TIMEOUT = 30000;",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_63_63",
+    "startLine": 63,
+    "endLine": 63,
+    "code": "// Module-level variables",
+    "path": "program > comment",
+    "comment": "// Module-level variables",
+    "error": false
+  },
+  {
+    "id": "test_comment_64_64",
+    "startLine": 64,
+    "endLine": 64,
+    "code": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "path": "program > comment",
+    "comment": "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_65_65",
+    "startLine": 65,
+    "endLine": 65,
+    "code": "const globalCounter = 0;",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_66_66",
+    "startLine": 66,
+    "endLine": 66,
+    "code": "const appConfig: Record<string, unknown> = {};",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_68_68",
+    "startLine": 68,
+    "endLine": 68,
+    "code": "// Simple function",
+    "path": "program > comment",
+    "comment": "// Simple function",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_69_71",
+    "startLine": 69,
+    "endLine": 71,
+    "code": "function add(a: number, b: number): number {\n  return a + b;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_73_73",
+    "startLine": 73,
+    "endLine": 73,
+    "code": "// Function with default parameters",
+    "path": "program > comment",
+    "comment": "// Function with default parameters",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_74_76",
+    "startLine": 74,
+    "endLine": 76,
+    "code": "function greet(name: string = \"Guest\", age: number = 18): string {\n  return `Hello, ${name}! You are ${age} years old.`;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_78_78",
+    "startLine": 78,
+    "endLine": 78,
+    "code": "// Generic function",
+    "path": "program > comment",
+    "comment": "// Generic function",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_79_81",
+    "startLine": 79,
+    "endLine": 81,
+    "code": "function identity<T>(value: T): T {\n  return value;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_83_83",
+    "startLine": 83,
+    "endLine": 83,
+    "code": "// Function with overloads",
+    "path": "program > comment",
+    "comment": "// Function with overloads",
+    "error": false
+  },
+  {
+    "id": "test_function_signature_84_84",
+    "startLine": 84,
+    "endLine": 84,
+    "code": "function processData(input: string): string;",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_function_signature_85_85",
+    "startLine": 85,
+    "endLine": 85,
+    "code": "function processData(input: number): number;",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_86_91",
+    "startLine": 86,
+    "endLine": 91,
+    "code": "function processData(input: string | number): string | number {\n  if (typeof input === \"string\") {\n    return input.toUpperCase();\n  }\n  return input * 2;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_93_93",
+    "startLine": 93,
+    "endLine": 93,
+    "code": "// Complex function with generics and type constraints",
+    "path": "program > comment",
+    "comment": "// Complex function with generics and type constraints",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_94_104",
+    "startLine": 94,
+    "endLine": 104,
+    "code": "function transformArray<T, R>(\n  items: T[],\n  transformer: (item: T) => R,\n  filter?: (item: T) => boolean\n): R[] {\n  let filtered = items;\n  if (filter) {\n    filtered = items.filter(filter);\n  }\n  return filtered.map(transformer);\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_106_106",
+    "startLine": 106,
+    "endLine": 106,
+    "code": "// Async function",
+    "path": "program > comment",
+    "comment": "// Async function",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_107_119",
+    "startLine": 107,
+    "endLine": 119,
+    "code": "async function fetchUserData(userId: string): Promise<User> {\n  try {\n    // Simulated API call - in real scenario would use fetch or axios\n    const response = await fetch(`${API_BASE_URL}/users/${userId}`);\n    if (!response.ok) {\n      throw new Error(`HTTP error! status: ${response.status}`);\n    }\n    const data = (await response.json()) as User;\n    return data;\n  } catch (error) {\n    throw new Error(`Failed to fetch user: ${error}`);\n  }\n}",
+    "path": "program > async",
+    "comment": "// Simulated API call - in real scenario would use fetch or axios",
+    "error": false
+  },
+  {
+    "id": "test_comment_121_121",
+    "startLine": 121,
+    "endLine": 121,
+    "code": "// Function with rest parameters",
+    "path": "program > comment",
+    "comment": "// Function with rest parameters",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_122_124",
+    "startLine": 122,
+    "endLine": 124,
+    "code": "function sum(...numbers: number[]): number {\n  return numbers.reduce((acc, num) => acc + num, 0);\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_126_126",
+    "startLine": 126,
+    "endLine": 126,
+    "code": "// Arrow function",
+    "path": "program > comment",
+    "comment": "// Arrow function",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_127_127",
+    "startLine": 127,
+    "endLine": 127,
+    "code": "const multiply = (a: number, b: number): number => a * b;",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_129_129",
+    "startLine": 129,
+    "endLine": 129,
+    "code": "// Higher-order function",
+    "path": "program > comment",
+    "comment": "// Higher-order function",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_130_134",
+    "startLine": 130,
+    "endLine": 134,
+    "code": "function createLogger(prefix: string): (message: string) => void {\n  return (message: string) => {\n    console.log(`[${prefix}] ${message}`);\n  };\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_136_136",
+    "startLine": 136,
+    "endLine": 136,
+    "code": "// Simple class",
+    "path": "program > comment",
+    "comment": "// Simple class",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_137_177",
+    "startLine": 137,
+    "endLine": 177,
+    "code": "class Person {\n  // Class properties\n  private _age: number;\n  protected name: string;\n  public readonly id: string;\n\n  // Constructor\n  constructor(name: string, age: number) {\n    this.name = name;\n    this._age = age;\n    this.id = generateId();\n  }\n\n  // Getter\n  get age(): number {\n    return this._age;\n  }\n\n  // Setter\n  set age(value: number) {\n    if (value >= 0) {\n      this._age = value;\n    }\n  }\n\n  // Method\n  greet(): string {\n    return `Hello, I'm ${this.name} and I'm ${this._age} years old`;\n  }\n\n  // Static method\n  static fromJSON(json: string): Person {\n    const data = JSON.parse(json);\n    return new Person(data.name, data.age);\n  }\n\n  // Private method\n  private validateAge(): boolean {\n    return this._age >= 0 && this._age <= 150;\n  }\n}",
+    "path": "program > class",
+    "comment": "// Class properties\n// Constructor\n// Getter\n// Setter\n// Method\n// Static method\n// Private method",
+    "error": false
+  },
+  {
+    "id": "test_comment_179_179",
+    "startLine": 179,
+    "endLine": 179,
+    "code": "// Class with inheritance",
+    "path": "program > comment",
+    "comment": "// Class with inheritance",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_180_225",
+    "startLine": 180,
+    "endLine": 225,
+    "code": "class Employee extends Person {\n  private employeeId: string;\n  public department: string;\n  protected salary: number;\n\n  constructor(\n    name: string,\n    age: number,\n    employeeId: string,\n    department: string,\n    salary: number\n  ) {\n    super(name, age);\n    this.employeeId = employeeId;\n    this.department = department;\n    this.salary = salary;\n  }\n\n  // Override method\n  greet(): string {\n    return `${super.greet()} and I work in ${this.department}`;\n  }\n\n  // New method\n  calculateBonus(multiplier: number = 0.1): number {\n    return this.salary * multiplier;\n  }\n\n  // Protected method\n  protected updateSalary(newSalary: number): void {\n    if (newSalary > 0) {\n      this.salary = newSalary;\n    }\n  }\n\n  // Abstract-like pattern with interface\n  getInfo(): Record<string, unknown> {\n    return {\n      name: this.name,\n      age: this.age,\n      employeeId: this.employeeId,\n      department: this.department,\n      salary: this.salary,\n    };\n  }\n}",
+    "path": "program > class",
+    "comment": "// Override method\n// New method\n// Protected method\n// Abstract-like pattern with interface",
+    "error": false
+  },
+  {
+    "id": "test_comment_227_227",
+    "startLine": 227,
+    "endLine": 227,
+    "code": "// Generic class",
+    "path": "program > comment",
+    "comment": "// Generic class",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_228_250",
+    "startLine": 228,
+    "endLine": 250,
+    "code": "class Stack<T> {\n  private items: T[] = [];\n\n  push(item: T): void {\n    this.items.push(item);\n  }\n\n  pop(): T | undefined {\n    return this.items.pop();\n  }\n\n  peek(): T | undefined {\n    return this.items[this.items.length - 1];\n  }\n\n  isEmpty(): boolean {\n    return this.items.length === 0;\n  }\n\n  size(): number {\n    return this.items.length;\n  }\n}",
+    "path": "program > class",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_252_252",
+    "startLine": 252,
+    "endLine": 252,
+    "code": "// Class implementing interface",
+    "path": "program > comment",
+    "comment": "// Class implementing interface",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_253_294",
+    "startLine": 253,
+    "endLine": 294,
+    "code": "class UserRepository implements Repository<User> {\n  private users: Map<string, User> = new Map();\n\n  async findById(id: string): Promise<User | null> {\n    return this.users.get(id) || null;\n  }\n\n  async findAll(): Promise<User[]> {\n    return Array.from(this.users.values());\n  }\n\n  async create(\n    entity: Omit<User, \"id\" | \"createdAt\" | \"updatedAt\">\n  ): Promise<User> {\n    const user: User = {\n      ...entity,\n      id: generateId(),\n      createdAt: new Date(),\n      updatedAt: new Date(),\n    };\n    this.users.set(user.id, user);\n    return user;\n  }\n\n  async update(id: string, entity: Partial<User>): Promise<User> {\n    const existing = await this.findById(id);\n    if (!existing) {\n      throw new Error(`User with id ${id} not found`);\n    }\n    const updated: User = {\n      ...existing,\n      ...entity,\n      updatedAt: new Date(),\n    };\n    this.users.set(id, updated);\n    return updated;\n  }\n\n  async delete(id: string): Promise<boolean> {\n    return this.users.delete(id);\n  }\n}",
+    "path": "program > class",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_296_296",
+    "startLine": 296,
+    "endLine": 296,
+    "code": "// Abstract class",
+    "path": "program > comment",
+    "comment": "// Abstract class",
+    "error": false
+  },
+  {
+    "id": "test_abstract_class_declaration_297_309",
+    "startLine": 297,
+    "endLine": 309,
+    "code": "abstract class BaseService {\n  protected logger: (message: string) => void;\n\n  constructor(serviceName: string) {\n    this.logger = createLogger(serviceName);\n  }\n\n  abstract process(data: unknown): Promise<unknown>;\n\n  protected log(message: string): void {\n    this.logger(message);\n  }\n}",
+    "path": "program > abstract",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_311_311",
+    "startLine": 311,
+    "endLine": 311,
+    "code": "// Concrete implementation",
+    "path": "program > comment",
+    "comment": "// Concrete implementation",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_312_331",
+    "startLine": 312,
+    "endLine": 331,
+    "code": "class UserService extends BaseService {\n  private repository: UserRepository;\n\n  constructor() {\n    super(\"UserService\");\n    this.repository = new UserRepository();\n  }\n\n  async process(data: unknown): Promise<User> {\n    this.log(\"Processing user data\");\n    if (typeof data === \"object\" && data !== null) {\n      return await this.repository.create(data as Omit<User, \"id\" | \"createdAt\" | \"updatedAt\">);\n    }\n    throw new Error(\"Invalid user data\");\n  }\n\n  async getUser(id: string): Promise<User | null> {\n    return await this.repository.findById(id);\n  }\n}",
+    "path": "program > class",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_333_333",
+    "startLine": 333,
+    "endLine": 333,
+    "code": "// Enum",
+    "path": "program > comment",
+    "comment": "// Enum",
+    "error": false
+  },
+  {
+    "id": "test_enum_declaration_334_338",
+    "startLine": 334,
+    "endLine": 338,
+    "code": "enum Color {\n  Red = \"RED\",\n  Green = \"GREEN\",\n  Blue = \"BLUE\",\n}",
+    "path": "program > enum",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_enum_declaration_340_344",
+    "startLine": 340,
+    "endLine": 344,
+    "code": "enum StatusCode {\n  OK = 200,\n  NotFound = 404,\n  ServerError = 500,\n}",
+    "path": "program > enum",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_346_346",
+    "startLine": 346,
+    "endLine": 346,
+    "code": "// Namespace",
+    "path": "program > comment",
+    "comment": "// Namespace",
+    "error": false
+  },
+  {
+    "id": "test_expression_statement_347_361",
+    "startLine": 347,
+    "endLine": 361,
+    "code": "namespace Utils {\n  export function formatDate(date: Date): string {\n    return date.toISOString();\n  }\n\n  export function parseJSON<T>(json: string): T {\n    return JSON.parse(json) as T;\n  }\n\n  export class Formatter {\n    static formatCurrency(amount: number): string {\n      return `$${amount.toFixed(2)}`;\n    }\n  }\n}",
+    "path": "program > expression_statement",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_363_363",
+    "startLine": 363,
+    "endLine": 363,
+    "code": "// Decorator function (simple implementation)",
+    "path": "program > comment",
+    "comment": "// Decorator function (simple implementation)",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_364_374",
+    "startLine": 364,
+    "endLine": 374,
+    "code": "function logMethod(\n  target: unknown,\n  propertyKey: string,\n  descriptor: PropertyDescriptor\n): void {\n  const originalMethod = descriptor.value;\n  descriptor.value = function (...args: unknown[]) {\n    console.log(`Calling ${propertyKey} with args:`, args);\n    return originalMethod.apply(this, args);\n  };\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_376_376",
+    "startLine": 376,
+    "endLine": 376,
+    "code": "// Class with decorator",
+    "path": "program > comment",
+    "comment": "// Class with decorator",
+    "error": false
+  },
+  {
+    "id": "test_class_declaration_377_387",
+    "startLine": 377,
+    "endLine": 387,
+    "code": "class Calculator {\n  @logMethod\n  add(a: number, b: number): number {\n    return a + b;\n  }\n\n  @logMethod\n  subtract(a: number, b: number): number {\n    return a - b;\n  }\n}",
+    "path": "program > class",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_389_389",
+    "startLine": 389,
+    "endLine": 389,
+    "code": "// Type guards",
+    "path": "program > comment",
+    "comment": "// Type guards",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_390_398",
+    "startLine": 390,
+    "endLine": 398,
+    "code": "function isUser(obj: unknown): obj is User {\n  return (\n    typeof obj === \"object\" &&\n    obj !== null &&\n    \"id\" in obj &&\n    \"name\" in obj &&\n    \"email\" in obj\n  );\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_400_400",
+    "startLine": 400,
+    "endLine": 400,
+    "code": "// Assertion function",
+    "path": "program > comment",
+    "comment": "// Assertion function",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_401_405",
+    "startLine": 401,
+    "endLine": 405,
+    "code": "function assertIsString(value: unknown): asserts value is string {\n  if (typeof value !== \"string\") {\n    throw new Error(\"Value is not a string\");\n  }\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_407_407",
+    "startLine": 407,
+    "endLine": 407,
+    "code": "// Conditional types",
+    "path": "program > comment",
+    "comment": "// Conditional types",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_408_408",
+    "startLine": 408,
+    "endLine": 408,
+    "code": "type NonNullable<T> = T extends null | undefined ? never : T;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_409_409",
+    "startLine": 409,
+    "endLine": 409,
+    "code": "type ReturnType<T> = T extends (...args: unknown[]) => infer R ? R : never;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_411_411",
+    "startLine": 411,
+    "endLine": 411,
+    "code": "// Mapped types",
+    "path": "program > comment",
+    "comment": "// Mapped types",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_412_414",
+    "startLine": 412,
+    "endLine": 414,
+    "code": "type Readonly<T> = {\n  readonly [P in keyof T]: T[P];\n};",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_416_418",
+    "startLine": 416,
+    "endLine": 418,
+    "code": "type Partial<T> = {\n  [P in keyof T]?: T[P];\n};",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_420_420",
+    "startLine": 420,
+    "endLine": 420,
+    "code": "// Utility types usage",
+    "path": "program > comment",
+    "comment": "// Utility types usage",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_421_421",
+    "startLine": 421,
+    "endLine": 421,
+    "code": "type UserInput = Omit<User, \"id\" | \"createdAt\" | \"updatedAt\">;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_422_422",
+    "startLine": 422,
+    "endLine": 422,
+    "code": "type UserUpdate = Partial<Pick<User, \"name\" | \"email\" | \"status\">>;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_424_424",
+    "startLine": 424,
+    "endLine": 424,
+    "code": "// Async generator",
+    "path": "program > comment",
+    "comment": "// Async generator",
+    "error": false
+  },
+  {
+    "id": "test_generator_function_declaration_425_430",
+    "startLine": 425,
+    "endLine": 430,
+    "code": "async function* asyncGenerator(start: number, end: number): AsyncGenerator<number> {\n  for (let i = start; i <= end; i++) {\n    await new Promise((resolve) => setTimeout(resolve, 100));\n    yield i;\n  }\n}",
+    "path": "program > async",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_432_432",
+    "startLine": 432,
+    "endLine": 432,
+    "code": "// Regular generator",
+    "path": "program > comment",
+    "comment": "// Regular generator",
+    "error": false
+  },
+  {
+    "id": "test_generator_function_declaration_433_437",
+    "startLine": 433,
+    "endLine": 437,
+    "code": "function* numberGenerator(start: number, end: number): Generator<number> {\n  for (let i = start; i <= end; i++) {\n    yield i;\n  }\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_439_439",
+    "startLine": 439,
+    "endLine": 439,
+    "code": "// Function with destructuring",
+    "path": "program > comment",
+    "comment": "// Function with destructuring",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_440_442",
+    "startLine": 440,
+    "endLine": 442,
+    "code": "function processUser({ name, email, role }: User): string {\n  return `${name} (${email}) - ${role}`;\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_444_444",
+    "startLine": 444,
+    "endLine": 444,
+    "code": "// Function with optional chaining and nullish coalescing",
+    "path": "program > comment",
+    "comment": "// Function with optional chaining and nullish coalescing",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_445_447",
+    "startLine": 445,
+    "endLine": 447,
+    "code": "function getUserName(user: User | null | undefined): string {\n  return user?.name ?? \"Unknown\";\n}",
+    "path": "program > function",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_449_449",
+    "startLine": 449,
+    "endLine": 449,
+    "code": "// Template literal types",
+    "path": "program > comment",
+    "comment": "// Template literal types",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_450_450",
+    "startLine": 450,
+    "endLine": 450,
+    "code": "type EventName = `on${Capitalize<string>}`;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_451_451",
+    "startLine": 451,
+    "endLine": 451,
+    "code": "type CSSValue = `${number}px` | `${number}%` | \"auto\";",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_453_453",
+    "startLine": 453,
+    "endLine": 453,
+    "code": "// Const assertions",
+    "path": "program > comment",
+    "comment": "// Const assertions",
+    "error": false
+  },
+  {
+    "id": "test_lexical_declaration_454_458",
+    "startLine": 454,
+    "endLine": 458,
+    "code": "const config = {\n  apiUrl: \"https://api.example.com\",\n  timeout: 30000,\n  retries: 3,\n} as const;",
+    "path": "program > const",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_460_460",
+    "startLine": 460,
+    "endLine": 460,
+    "code": "// Tuple types",
+    "path": "program > comment",
+    "comment": "// Tuple types",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_461_461",
+    "startLine": 461,
+    "endLine": 461,
+    "code": "type Point = [number, number];",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_462_462",
+    "startLine": 462,
+    "endLine": 462,
+    "code": "type UserTuple = [string, string, number];",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_462_462",
+    "startLine": 462,
+    "endLine": 462,
+    "code": "// [name, email, age]",
+    "path": "program > comment",
+    "comment": "// [name, email, age]",
+    "error": false
+  },
+  {
+    "id": "test_comment_464_464",
+    "startLine": 464,
+    "endLine": 464,
+    "code": "// Union and intersection types",
+    "path": "program > comment",
+    "comment": "// Union and intersection types",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_465_465",
+    "startLine": 465,
+    "endLine": 465,
+    "code": "type StringOrNumber = string | number;",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_type_alias_declaration_466_466",
+    "startLine": 466,
+    "endLine": 466,
+    "code": "type UserWithProduct = User & { product: Product };",
+    "path": "program > type",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_468_468",
+    "startLine": 468,
+    "endLine": 468,
+    "code": "// Main execution",
+    "path": "program > comment",
+    "comment": "// Main execution",
+    "error": false
+  },
+  {
+    "id": "test_function_declaration_469_521",
+    "startLine": 469,
+    "endLine": 521,
+    "code": "async function main(): Promise<void> {\n  console.log(\"TypeScript Chunker Test\");\n\n  // Test simple function\n  const result = add(5, 3);\n  console.log(`Add result: ${result}`);\n\n  // Test class\n  const person = new Person(\"Alice\", 25);\n  console.log(person.greet());\n\n  // Test employee\n  const employee = new Employee(\"Bob\", 30, \"EMP001\", \"Engineering\", 75000);\n  console.log(employee.greet());\n  console.log(`Bonus: $${employee.calculateBonus()}`);\n\n  // Test generic class\n  const stack = new Stack<number>();\n  stack.push(1);\n  stack.push(2);\n  stack.push(3);\n  console.log(`Stack size: ${stack.size()}`);\n\n  // Test repository\n  const userRepo = new UserRepository();\n  const user = await userRepo.create({\n    name: \"Charlie\",\n    email: \"charlie@example.com\",\n    role: \"user\",\n    status: \"active\",\n  });\n  console.log(`Created user: ${user.name}`);\n\n  // Test service\n  const userService = new UserService();\n  const serviceUser = await userService.process({\n    name: \"David\",\n    email: \"david@example.com\",\n    role: \"admin\",\n    status: \"active\",\n  });\n  console.log(`Service user: ${serviceUser.name}`);\n\n  // Test utilities\n  const formatted = Utils.Formatter.formatCurrency(1234.56);\n  console.log(`Formatted: ${formatted}`);\n\n  // Test calculator with decorator\n  const calc = new Calculator();\n  console.log(`5 + 3 = ${calc.add(5, 3)}`);\n\n  console.log(\"All tests completed!\");\n}",
+    "path": "program > async",
+    "comment": "// Test simple function\n// Test class\n// Test employee\n// Test generic class\n// Test repository\n// Test service\n// Test utilities\n// Test calculator with decorator",
+    "error": false
+  },
+  {
+    "id": "test_comment_523_523",
+    "startLine": 523,
+    "endLine": 523,
+    "code": "// Export statements",
+    "path": "program > comment",
+    "comment": "// Export statements",
+    "error": false
+  },
+  {
+    "id": "test_export_statement_524_536",
+    "startLine": 524,
+    "endLine": 536,
+    "code": "export {\n  User,\n  Product,\n  Person,\n  Employee,\n  UserRepository,\n  UserService,\n  Stack,\n  add,\n  greet,\n  fetchUserData,\n  transformArray,\n};",
+    "path": "program > export",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_538_538",
+    "startLine": 538,
+    "endLine": 538,
+    "code": "// Default export",
+    "path": "program > comment",
+    "comment": "// Default export",
+    "error": false
+  },
+  {
+    "id": "test_export_statement_539_539",
+    "startLine": 539,
+    "endLine": 539,
+    "code": "export default main;",
+    "path": "program > export",
+    "comment": "",
+    "error": false
+  },
+  {
+    "id": "test_comment_541_541",
+    "startLine": 541,
+    "endLine": 541,
+    "code": "// Conditional execution",
+    "path": "program > comment",
+    "comment": "// Conditional execution",
+    "error": false
+  },
+  {
+    "id": "test_if_statement_542_544",
+    "startLine": 542,
+    "endLine": 544,
+    "code": "if (require.main ==== module) {\n  main().catch(console.error);\n}",
+    "path": "program > if",
+    "comment": "",
+    "error": true
+  }
+]

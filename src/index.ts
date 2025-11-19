@@ -4,7 +4,7 @@ import { isBinaryFile, isMachineGenerated, shouldSkipDirectory, shouldSkipFileEx
 import { MAX_FILE_SIZE } from "./constants/scan.constants";
 import langMap from "lang-map";
 import { logger } from "./logger/logger";
-import { chunkFile } from "./chunker/chunker";
+import { chunkFile } from "./chunker/chunkerv2";
 
 
 
@@ -55,8 +55,7 @@ async function startScan(directory: string) {
                         try {
                             const chunks = await chunkFile(filePath, language);
                             console.log(`${file} - ${language} (${chunks.length} chunks)`);
-
-                            console.log(chunks);
+                            console.log(chunks)
                             
                         } catch (chunkError) {
                             logger.error(
