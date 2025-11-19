@@ -24,7 +24,7 @@ import SQL from "tree-sitter-sql";
 // These limits determine when to split large AST nodes into smaller chunks
 export const LANGUAGE_SIZE_LIMITS: Record<string, number> = {
     javascript: 3000,
-    typescript: 1500,
+    typescript: 1000,
     python: 1000,
     java: 3000,
     cpp: 3000,

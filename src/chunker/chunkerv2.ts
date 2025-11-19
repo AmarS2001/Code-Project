@@ -192,12 +192,10 @@ export function chunkCodeDFS(
 /**
  * DFS recursive function to process AST nodes and create chunks
  * 
- * Strategy (Smart chunking for consistent sizes):
- * 1. If node fits in maxSize: chunk it (stops recursion, keeps related code together)
- * 2. If node is too large but children would create many small chunks:
- *    -> Try to chunk parent as-is (even if > maxSize) for consistency
- * 3. If node is too large and must break down: recurse into children with DFS
- * 4. Handle gaps for 100% coverage of non-blank content
+ * Simplified strategy using Tree-sitter's native sibling traversal:
+ * 1. If node ≤ maxSize: chunk it, stop recursion
+ * 2. If node > maxSize with children: group small siblings, recurse into large ones
+ * 3. If node > maxSize without children: chunk it (leaf node)
  */
 function processNodeDFS(params: {
   source: string;
@@ -213,10 +211,9 @@ function processNodeDFS(params: {
   const nodeName = extractNodeName(node);
   const currentPath = buildPath(pathTrace, nodeName);
 
-  // Case 1: Node fits in maxSize - chunk it and stop recursion
-  // This keeps related code together (e.g., entire function, class, etc.)
+  // Case 1: Node fits in maxSize - chunk it
   if (nodeSize <= maxSize) {
-    const chunk: Chunk = {
+    chunks.push({
       id: buildChunkId(fileName, node),
       startLine: node.startPosition.row + 1,
       endLine: node.endPosition.row + 1,
@@ -224,164 +221,137 @@ function processNodeDFS(params: {
       path: currentPath,
       comment: extractComments(node, source),
       error: hasErrors(node),
-    };
-    chunks.push(chunk);
+    });
     return;
   }
 
-  // Case 2: Node is too large but has children - decide whether to recurse or chunk parent
-  if (node.namedChildCount > 0) {
-    // Collect and sort children by position
-    const children: Parser.SyntaxNode[] = [];
-    for (let i = 0; i < node.namedChildCount; i++) {
-      const child = node.namedChild(i);
-      if (child) {
-        children.push(child);
-      }
-    }
-    children.sort((a, b) => a.startIndex - b.startIndex);
+  // Case 2: Node too large - process children if available
+  if (!node.firstChild) {
+    // Leaf node - chunk it even if oversized
+    chunks.push({
+      id: buildChunkId(fileName, node),
+      startLine: node.startPosition.row + 1,
+      endLine: node.endPosition.row + 1,
+      code: extractCode(source, node),
+      path: currentPath,
+      comment: extractComments(node, source),
+      error: hasErrors(node),
+    });
+    return;
+  }
 
-    // Smart sibling combining: Group consecutive small children into larger chunks
-    // This prevents many tiny fragments while maintaining good granularity
-    const minChunkSize = Math.floor(maxSize * 0.2); // 20% of maxSize (e.g., 300 chars)
-    const siblingGroups: Parser.SyntaxNode[][] = [];
-    let currentGroup: Parser.SyntaxNode[] = [];
-    let currentGroupSize = 0;
+  // Has children - group small siblings, recurse into large ones
+  const minChunkSize = Math.floor(maxSize * 0.2); // 20% threshold
+  let currentChild: Parser.SyntaxNode | null = node.firstChild;
+  let groupStart: Parser.SyntaxNode | null = null;
+  let groupEnd: Parser.SyntaxNode | null = null;
+  let groupSize = 0;
+  let lastEnd = node.startIndex;
 
-    for (const child of children) {
-      const childSize = child.endIndex - child.startIndex;
-      
-      // If child alone is large enough (>= minChunkSize), process it separately
-      if (childSize >= minChunkSize) {
-        // Save current group if it exists
-        if (currentGroup.length > 0) {
-          siblingGroups.push(currentGroup);
-          currentGroup = [];
-          currentGroupSize = 0;
-        }
-        // Add large child as its own group
-        siblingGroups.push([child]);
-      } else {
-        // Small child - try to add to current group
-        if (currentGroupSize + childSize <= maxSize) {
-          // Fits in current group
-          currentGroup.push(child);
-          currentGroupSize += childSize;
-        } else {
-          // Doesn't fit - save current group and start new one
-          if (currentGroup.length > 0) {
-            siblingGroups.push(currentGroup);
-          }
-          currentGroup = [child];
-          currentGroupSize = childSize;
-        }
-      }
-    }
-    
-    // Don't forget the last group
-    if (currentGroup.length > 0) {
-      siblingGroups.push(currentGroup);
-    }
-
-    // Track coverage for gap detection
-    let lastEnd = node.startIndex;
-
-    // Process each sibling group
-    for (const group of siblingGroups) {
-      // Handle gap before first child in group
-      const firstChild = group[0];
-      if (firstChild.startIndex > lastEnd) {
-        const gapContent = source.substring(lastEnd, firstChild.startIndex);
-        const gapContentTrimmed = gapContent.trim();
-        
-        if (gapContentTrimmed.length > 0) {
-          const gapStartLine = source.substring(0, lastEnd).split('\n').length;
-          const gapEndLine = source.substring(0, firstChild.startIndex).split('\n').length;
-          
-          const gapChunk: Chunk = {
-            id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${gapStartLine}_${gapEndLine}`,
-            startLine: gapStartLine,
-            endLine: gapEndLine,
-            code: gapContent,
-            path: `${currentPath} > [gap]`,
-            comment: "",
-            error: true,
-          };
-          chunks.push(gapChunk);
-        }
-      }
-
-      if (group.length === 1) {
-        // Single child - recurse normally (DFS)
-        const child = group[0];
-        processNodeDFS({
-          source,
-          node: child,
-          fileName,
-          pathTrace: currentPath,
-          chunks,
-          maxSize,
-        });
-      } else {
-        // Multiple small siblings - combine into one chunk
-        const groupStart = group[0].startIndex;
-        const groupEnd = group[group.length - 1].endIndex;
-        const groupCode = source.substring(groupStart, groupEnd);
-        
-        const groupStartLine = group[0].startPosition.row + 1;
-        const groupEndLine = group[group.length - 1].endPosition.row + 1;
-        
-        const chunk: Chunk = {
-          id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_group_${groupStartLine}_${groupEndLine}`,
-          startLine: groupStartLine,
-          endLine: groupEndLine,
-          code: groupCode,
-          path: `${currentPath} > [siblings]`,
-          comment: extractComments(group[0], source),
-          error: group.some(c => hasErrors(c)),
-        };
-        chunks.push(chunk);
-      }
-
-      lastEnd = group[group.length - 1].endIndex;
-    }
-
-    // Handle gap after last child
-    if (lastEnd < node.endIndex) {
-      const gapContent = source.substring(lastEnd, node.endIndex);
-      const gapContentTrimmed = gapContent.trim();
-      
-      if (gapContentTrimmed.length > 0) {
-        const gapStartLine = source.substring(0, lastEnd).split('\n').length;
-        const gapEndLine = source.substring(0, node.endIndex).split('\n').length;
-        
-        const gapChunk: Chunk = {
-          id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${gapStartLine}_${gapEndLine}`,
-          startLine: gapStartLine,
-          endLine: gapEndLine,
-          code: gapContent,
+  while (currentChild) {
+    // Handle gap before current child
+    if (currentChild.startIndex > lastEnd) {
+      const gap = source.substring(lastEnd, currentChild.startIndex).trim();
+      if (gap.length > 0) {
+        chunks.push({
+          id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${source.substring(0, lastEnd).split('\n').length}_${source.substring(0, currentChild.startIndex).split('\n').length}`,
+          startLine: source.substring(0, lastEnd).split('\n').length,
+          endLine: source.substring(0, currentChild.startIndex).split('\n').length,
+          code: source.substring(lastEnd, currentChild.startIndex),
           path: `${currentPath} > [gap]`,
           comment: "",
           error: true,
-        };
-        chunks.push(gapChunk);
+        });
       }
     }
 
-    return;
+    const childSize = currentChild.endIndex - currentChild.startIndex;
+
+    // Large child - emit any pending group, then recurse
+    if (childSize >= minChunkSize) {
+      if (groupStart && groupEnd) {
+        emitGroup(source, fileName, currentPath, groupStart, groupEnd, chunks);
+        groupStart = groupEnd = null;
+        groupSize = 0;
+      }
+      
+      processNodeDFS({
+        source,
+        node: currentChild,
+        fileName,
+        pathTrace: currentPath,
+        chunks,
+        maxSize,
+      });
+      lastEnd = currentChild.endIndex;
+    } else {
+      // Small child - add to group or start new group
+      if (!groupStart) {
+        groupStart = currentChild;
+        groupEnd = currentChild;
+        groupSize = childSize;
+      } else if (groupSize + childSize <= maxSize) {
+        groupEnd = currentChild;
+        groupSize += childSize;
+      } else {
+        // Group full - emit it and start new group
+        emitGroup(source, fileName, currentPath, groupStart, groupEnd!, chunks);
+        groupStart = currentChild;
+        groupEnd = currentChild;
+        groupSize = childSize;
+      }
+      lastEnd = currentChild.endIndex;
+    }
+
+    currentChild = currentChild.nextSibling;
   }
 
-  // Case 3: Node is too large but is a leaf (no children) - chunk it anyway
-  const chunk: Chunk = {
-    id: buildChunkId(fileName, node),
-    startLine: node.startPosition.row + 1,
-    endLine: node.endPosition.row + 1,
-    code: extractCode(source, node),
-    path: currentPath,
-    comment: extractComments(node, source),
-    error: hasErrors(node),
-  };
-  chunks.push(chunk);
+  // Emit any remaining group
+  if (groupStart && groupEnd) {
+    emitGroup(source, fileName, currentPath, groupStart, groupEnd, chunks);
+  }
+
+  // Handle gap after last child
+  if (lastEnd < node.endIndex) {
+    const gap = source.substring(lastEnd, node.endIndex).trim();
+    if (gap.length > 0) {
+      chunks.push({
+        id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${source.substring(0, lastEnd).split('\n').length}_${source.substring(0, node.endIndex).split('\n').length}`,
+        startLine: source.substring(0, lastEnd).split('\n').length,
+        endLine: source.substring(0, node.endIndex).split('\n').length,
+        code: source.substring(lastEnd, node.endIndex),
+        path: `${currentPath} > [gap]`,
+        comment: "",
+        error: true,
+      });
+    }
+  }
+}
+
+/**
+ * Helper: Emit a chunk for a group of sibling nodes
+ */
+function emitGroup(
+  source: string,
+  fileName: string,
+  parentPath: string,
+  groupStart: Parser.SyntaxNode,
+  groupEnd: Parser.SyntaxNode,
+  chunks: Chunk[]
+): void {
+  const code = source.substring(groupStart.startIndex, groupEnd.endIndex);
+  const startLine = groupStart.startPosition.row + 1;
+  const endLine = groupEnd.endPosition.row + 1;
+  
+  chunks.push({
+    id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_group_${startLine}_${endLine}`,
+    startLine,
+    endLine,
+    code,
+    path: `${parentPath} > [siblings]`,
+    comment: extractComments(groupStart, source),
+    error: hasErrors(groupStart) || hasErrors(groupEnd),
+  });
 }
 
 // ===================================================================
