@@ -191,11 +191,7 @@ export function chunkCodeDFS(
 
 /**
  * DFS recursive function to process AST nodes and create chunks
- * 
- * Simplified strategy using Tree-sitter's native sibling traversal:
- * 1. If node ≤ maxSize: chunk it, stop recursion
- * 2. If node > maxSize with children: group small siblings, recurse into large ones
- * 3. If node > maxSize without children: chunk it (leaf node)
+ * Optimized with native Tree-sitter traversal
  */
 function processNodeDFS(params: {
   source: string;
@@ -213,125 +209,103 @@ function processNodeDFS(params: {
 
   // Case 1: Node fits in maxSize - chunk it
   if (nodeSize <= maxSize) {
-    chunks.push({
-      id: buildChunkId(fileName, node),
-      startLine: node.startPosition.row + 1,
-      endLine: node.endPosition.row + 1,
-      code: extractCode(source, node),
-      path: currentPath,
-      comment: extractComments(node, source),
-      error: hasErrors(node),
-    });
+    createChunk(source, fileName, node, currentPath, chunks);
     return;
   }
 
-  // Case 2: Node too large - process children if available
+  // Case 2: Leaf node that's too large - chunk it anyway
   if (!node.firstChild) {
-    // Leaf node - chunk it even if oversized
-    chunks.push({
-      id: buildChunkId(fileName, node),
-      startLine: node.startPosition.row + 1,
-      endLine: node.endPosition.row + 1,
-      code: extractCode(source, node),
-      path: currentPath,
-      comment: extractComments(node, source),
-      error: hasErrors(node),
-    });
+    createChunk(source, fileName, node, currentPath, chunks);
     return;
   }
 
-  // Has children - group small siblings, recurse into large ones
-  const minChunkSize = Math.floor(maxSize * 0.2); // 20% threshold
-  let currentChild: Parser.SyntaxNode | null = node.firstChild;
+  // Case 3: Has children - group small siblings, recurse into large ones
+  const minChunkSize = Math.floor(maxSize * 0.2);
+  let child: Parser.SyntaxNode | null = node.firstChild;
   let groupStart: Parser.SyntaxNode | null = null;
   let groupEnd: Parser.SyntaxNode | null = null;
   let groupSize = 0;
   let lastEnd = node.startIndex;
 
-  while (currentChild) {
-    // Handle gap before current child
-    if (currentChild.startIndex > lastEnd) {
-      const gap = source.substring(lastEnd, currentChild.startIndex).trim();
-      if (gap.length > 0) {
-        chunks.push({
-          id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${source.substring(0, lastEnd).split('\n').length}_${source.substring(0, currentChild.startIndex).split('\n').length}`,
-          startLine: source.substring(0, lastEnd).split('\n').length,
-          endLine: source.substring(0, currentChild.startIndex).split('\n').length,
-          code: source.substring(lastEnd, currentChild.startIndex),
-          path: `${currentPath} > [gap]`,
-          comment: "",
-          error: true,
-        });
-      }
-    }
+  while (child) {
+    // Handle gap before child
+    handleGap(source, fileName, currentPath, lastEnd, child.startIndex, chunks);
 
-    const childSize = currentChild.endIndex - currentChild.startIndex;
+    const childSize = child.endIndex - child.startIndex;
 
-    // Large child - emit any pending group, then recurse
     if (childSize >= minChunkSize) {
+      // Large child - emit pending group, then recurse
       if (groupStart && groupEnd) {
-        emitGroup(source, fileName, currentPath, groupStart, groupEnd, chunks);
+        createGroupChunk(source, fileName, currentPath, groupStart, groupEnd, chunks);
         groupStart = groupEnd = null;
         groupSize = 0;
       }
       
       processNodeDFS({
         source,
-        node: currentChild,
+        node: child,
         fileName,
         pathTrace: currentPath,
         chunks,
         maxSize,
       });
-      lastEnd = currentChild.endIndex;
+      lastEnd = child.endIndex;
     } else {
-      // Small child - add to group or start new group
+      // Small child - add to group
       if (!groupStart) {
-        groupStart = currentChild;
-        groupEnd = currentChild;
+        groupStart = child;
+        groupEnd = child;
         groupSize = childSize;
       } else if (groupSize + childSize <= maxSize) {
-        groupEnd = currentChild;
+        groupEnd = child;
         groupSize += childSize;
       } else {
-        // Group full - emit it and start new group
-        emitGroup(source, fileName, currentPath, groupStart, groupEnd!, chunks);
-        groupStart = currentChild;
-        groupEnd = currentChild;
+        // Group full - emit and start new
+        createGroupChunk(source, fileName, currentPath, groupStart, groupEnd!, chunks);
+        groupStart = child;
+        groupEnd = child;
         groupSize = childSize;
       }
-      lastEnd = currentChild.endIndex;
+      lastEnd = child.endIndex;
     }
 
-    currentChild = currentChild.nextSibling;
+    child = child.nextSibling;
   }
 
-  // Emit any remaining group
+  // Emit remaining group
   if (groupStart && groupEnd) {
-    emitGroup(source, fileName, currentPath, groupStart, groupEnd, chunks);
+    createGroupChunk(source, fileName, currentPath, groupStart, groupEnd, chunks);
   }
 
   // Handle gap after last child
-  if (lastEnd < node.endIndex) {
-    const gap = source.substring(lastEnd, node.endIndex).trim();
-    if (gap.length > 0) {
-      chunks.push({
-        id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${source.substring(0, lastEnd).split('\n').length}_${source.substring(0, node.endIndex).split('\n').length}`,
-        startLine: source.substring(0, lastEnd).split('\n').length,
-        endLine: source.substring(0, node.endIndex).split('\n').length,
-        code: source.substring(lastEnd, node.endIndex),
-        path: `${currentPath} > [gap]`,
-        comment: "",
-        error: true,
-      });
-    }
-  }
+  handleGap(source, fileName, currentPath, lastEnd, node.endIndex, chunks);
 }
 
 /**
- * Helper: Emit a chunk for a group of sibling nodes
+ * Create a single chunk from a node
  */
-function emitGroup(
+function createChunk(
+  source: string,
+  fileName: string,
+  node: Parser.SyntaxNode,
+  path: string,
+  chunks: Chunk[]
+): void {
+  chunks.push({
+    id: buildChunkId(fileName, node),
+    startLine: node.startPosition.row + 1,
+    endLine: node.endPosition.row + 1,
+    code: extractCode(source, node),
+    path,
+    comment: extractComments(node, source),
+    error: hasErrors(node),
+  });
+}
+
+/**
+ * Create a chunk from grouped siblings with descriptive path
+ */
+function createGroupChunk(
   source: string,
   fileName: string,
   parentPath: string,
@@ -343,14 +317,58 @@ function emitGroup(
   const startLine = groupStart.startPosition.row + 1;
   const endLine = groupEnd.endPosition.row + 1;
   
+  // Build descriptive path: collect unique node types in the group
+  const nodeTypes = new Set<string>();
+  let current: Parser.SyntaxNode | null = groupStart;
+  
+  while (current && current.startIndex <= groupEnd.startIndex) {
+    nodeTypes.add(current.type);
+    if (current === groupEnd) break;
+    current = current.nextSibling;
+  }
+  
+  // Create readable path like "program > comment+import+type"
+  const typesPath = Array.from(nodeTypes).slice(0, 5).join('+'); // Limit to 5 types
+  const groupPath = `${parentPath} > ${typesPath}`;
+  
   chunks.push({
     id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_group_${startLine}_${endLine}`,
     startLine,
     endLine,
     code,
-    path: `${parentPath} > [siblings]`,
+    path: groupPath,
     comment: extractComments(groupStart, source),
     error: hasErrors(groupStart) || hasErrors(groupEnd),
+  });
+}
+
+/**
+ * Handle gaps between nodes (whitespace/errors)
+ */
+function handleGap(
+  source: string,
+  fileName: string,
+  parentPath: string,
+  start: number,
+  end: number,
+  chunks: Chunk[]
+): void {
+  if (start >= end) return;
+  
+  const gap = source.substring(start, end).trim();
+  if (gap.length === 0) return;
+  
+  const startLine = source.substring(0, start).split('\n').length;
+  const endLine = source.substring(0, end).split('\n').length;
+  
+  chunks.push({
+    id: `${fileName.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_]/g, "_")}_gap_${startLine}_${endLine}`,
+    startLine,
+    endLine,
+    code: source.substring(start, end),
+    path: `${parentPath} > gap`,
+    comment: "",
+    error: true,
   });
 }
 
@@ -401,6 +419,33 @@ function fallbackTextChunker(
   }
 
   return chunks;
+}
+
+
+function processNode(params: {
+  source: string;
+  node: Parser.SyntaxNode;
+  fileName: string;
+  pathTrace: string;
+  chunks: Chunk[];
+  maxSize: number;
+}): void {
+  const { source, node, fileName, pathTrace, chunks, maxSize } = params;
+
+  const nodeSize = node.endIndex - node.startIndex;
+  const nodeName = extractNodeName(node);
+  const currentPath = buildPath(pathTrace, nodeName);
+
+  if (nodeSize <= maxSize) {
+    createChunk(source, fileName, node, currentPath, chunks);
+  }
+
+    // Case 2: Leaf node that's too large - chunk it anyway
+    if (!node.firstChild) {
+      createChunk(source, fileName, node, currentPath, chunks);
+      return;
+    }
+
 }
 
 // ===================================================================

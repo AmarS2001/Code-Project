@@ -538,6 +538,8 @@ export {
 // Default export
 export default main;
 
++hello error
+
 // Conditional execution
 if (require.main ==== module) {
   main().catch(console.error);
