@@ -4,11 +4,14 @@ import { isBinaryFile, isMachineGenerated, shouldSkipDirectory, shouldSkipFileEx
 import { MAX_FILE_SIZE } from "./constants/scan.constants";
 import langMap from "lang-map";
 import { logger } from "./logger/logger";
-import { chunkFile } from "./chunker/chunkerv2";
+import { CodeChunker } from "./chunker/chunker";
+import { getLanguageConfig } from "./chunker/constants/chunk.constants";
 
 
 
 async function startScan(directory: string) {
+    const chunker = new CodeChunker();
+    
     try {
         const files = await fs.readdir(directory);
         await Promise.all(
@@ -53,9 +56,34 @@ async function startScan(directory: string) {
                         
                         // Chunk the file
                         try {
-                            const chunks = await chunkFile(filePath, language);
-                            console.log(`${file} - ${language} (${chunks.length} chunks)`);
-                            console.log(chunks)
+                            const source = await fs.readFile(filePath, "utf-8");
+                            const chunks = await chunker.chunkFile(filePath, language);
+
+                            console.log(JSON.stringify(chunks, null, 2));
+                            
+                            const config = getLanguageConfig(language);
+                            
+                            // Analyze quality with language-specific sizes
+                            const quality = chunker.analyzeQuality(chunks, source, config.minSize, config.maxSize);
+                            
+                            // Log summary
+                            logger.info(
+                                {
+                                    message: "File chunked successfully",
+                                    data: {
+                                        file,
+                                        language,
+                                        chunks: quality.totalChunks,
+                                        avgSize: quality.avgSize,
+                                        quality: quality.isGoodQuality ? "✅ GOOD" : "⚠️ NEEDS IMPROVEMENT",
+                                        complete: quality.isComplete ? "✅" : `❌ (${quality.missingChars} missing)`
+                                    }
+                                },
+                                "startScan"
+                            );
+                            
+                            // Log detailed quality metrics
+                            chunker.logQuality(quality, file);
                             
                         } catch (chunkError) {
                             logger.error(

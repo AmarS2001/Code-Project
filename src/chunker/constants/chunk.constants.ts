@@ -19,76 +19,182 @@ import YAML from "tree-sitter-yaml";
 import Markdown from "tree-sitter-markdown";
 import SQL from "tree-sitter-sql";
 
+/**
+ * Language configuration interface
+ * Maps each language to its parser, min chunk size, and max chunk size
+ */
+export interface LanguageConfig {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  parser: any; // Tree-sitter Language object (varies by language module)
+  minSize: number; // Minimum chunk size in characters
+  maxSize: number; // Maximum chunk size in characters
+}
 
-// Language-specific character size limits (in characters)
-// These limits determine when to split large AST nodes into smaller chunks
-export const LANGUAGE_SIZE_LIMITS: Record<string, number> = {
-    javascript: 3000,
-    typescript: 1000,
-    python: 1000,
-    java: 3000,
-    cpp: 3000,
-    c: 3000,
-    go: 3000,
-    rust: 3000,
-    ruby: 3000,
-    php: 3000,
-    kotlin: 3000,
-    css: 5000,
-    scss: 5000,
-    html: 5000,
-    json: 5000,
-    yaml: 5000,
-    markdown: 5000,
-    sql: 3000,
-    default: 3000,
+/**
+ * Unified language configuration
+ * Each language maps to parser, minSize, and maxSize
+ */
+export const LANGUAGE_CONFIG: Record<string, LanguageConfig> = {
+  javascript: {
+    parser: JavaScript,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  js: {
+    parser: JavaScript,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  typescript: {
+    parser: TypeScriptModule.typescript,
+    minSize: 60,
+    maxSize: 1000,
+  },
+  ts: {
+    parser: TypeScriptModule.typescript,
+    minSize: 60,
+    maxSize: 1000,
+  },
+  tsx: {
+    parser: TypeScriptModule.tsx,
+    minSize: 60,
+    maxSize: 1000,
+  },
+  python: {
+    parser: Python,
+    minSize: 60,
+    maxSize: 1000,
+  },
+  py: {
+    parser: Python,
+    minSize: 60,
+    maxSize: 1000,
+  },
+  java: {
+    parser: Java,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  cpp: {
+    parser: Cpp,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  cxx: {
+    parser: Cpp,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  cc: {
+    parser: Cpp,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  c: {
+    parser: Cpp,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  go: {
+    parser: Go,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  rust: {
+    parser: Rust,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  rs: {
+    parser: Rust,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  ruby: {
+    parser: Ruby,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  rb: {
+    parser: Ruby,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  php: {
+    parser: PHP,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  kotlin: {
+    parser: Kotlin,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  kt: {
+    parser: Kotlin,
+    minSize: 60,
+    maxSize: 3000,
+  },
+  css: {
+    parser: CSS,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  scss: {
+    parser: SCSS,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  html: {
+    parser: HTML,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  json: {
+    parser: JSON,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  yaml: {
+    parser: YAML,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  yml: {
+    parser: YAML,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  markdown: {
+    parser: Markdown,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  md: {
+    parser: Markdown,
+    minSize: 60,
+    maxSize: 5000,
+  },
+  sql: {
+    parser: SQL,
+    minSize: 60,
+    maxSize: 3000,
+  },
 };
 
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const LANGUAGE_PARSERS: Record<string, any> = {
-    javascript: JavaScript,
-    js: JavaScript,
-    typescript: TypeScriptModule.typescript,
-    ts: TypeScriptModule.typescript,
-    tsx: TypeScriptModule.tsx,
-    python: Python,
-    py: Python,
-    java: Java,
-    cpp: Cpp,
-    cxx: Cpp,
-    cc: Cpp,
-    c: Cpp,
-    go: Go,
-    rust: Rust,
-    rs: Rust,
-    ruby: Ruby,
-    rb: Ruby,
-    php: PHP,
-    kotlin: Kotlin,
-    kt: Kotlin,
-    css: CSS,
-    scss: SCSS,
-    html: HTML,
-    json: JSON,
-    yaml: YAML,
-    yml: YAML,
-    markdown: Markdown,
-    md: Markdown,
-    sql: SQL,
+/**
+ * Default configuration for unsupported languages
+ */
+export const DEFAULT_CONFIG: LanguageConfig = {
+  parser: null,
+  minSize: 60,
+  maxSize: 3000,
 };
 
-
-  // Common identifier node types across different languages
-  export const IDENTIFIER_TYPES_SET = new Set([
-    "identifier",
-    "property_identifier",
-    "type_identifier",
-    "field_identifier",
-    "method_identifier",
-    "function_identifier",
-    "class_identifier",
-    "name",
-    "tag_name",
-    "attribute_name",
-  ]);
+/**
+ * Get language configuration by name
+ */
+export function getLanguageConfig(language: string): LanguageConfig {
+  const normalized = language.toLowerCase();
+  return LANGUAGE_CONFIG[normalized] || DEFAULT_CONFIG;
+}
