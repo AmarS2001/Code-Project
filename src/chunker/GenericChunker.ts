@@ -132,6 +132,7 @@ export class GenericChunker {
       end_line: last.end_line,
       // If we merged chunks, their IDs are now obsolete or we make a new one
       id: this.generateId(combinedContent, first.file_path, first.start_line),
+      error: buffer.some(c => c.error),
     };
   }
 
@@ -152,6 +153,7 @@ export class GenericChunker {
     // We need the ACTUAL text header of the parent?
     // Let's stick effectively to "Signature" of current + Breadcrumbs of parent.
     
+
     return {
       id: this.generateId(content, filePath, startLine),
       content: content,
@@ -160,8 +162,10 @@ export class GenericChunker {
       start_line: startLine,
       end_line: node.endPosition.row + 1,
       path: contextPath,
-      context_header: contextPath.length > 0 ? lines[Math.max(0, node.parent?.startPosition.row || 0)] : '', 
-      // ^ Roughly the header of the parent
+      context_header: (contextPath.length > 0 && node.parent) ? this.getHeader(node.parent, lines) : '', 
+      // ^ Parent's context
+      error: node.hasError,
+      comments: this.getPrecedingComments(node),
     };
   }
 
@@ -191,7 +195,9 @@ export class GenericChunker {
                 end_line: nodeStartLine + i,
                 context_header: this.getHeader(node, lines),
                 path: contextPath,
-                group_id: groupId
+                group_id: groupId,
+                error: node.hasError,
+                comments: i === 0 ? this.getPrecedingComments(node) : undefined, // Only first chunk gets comments
             });
             buffer = '';
             startL = i;
@@ -209,6 +215,8 @@ export class GenericChunker {
             context_header: this.getHeader(node, lines),
             path: contextPath,
             group_id: groupId,
+            error: node.hasError,
+            comments: result.length === 0 ? this.getPrecedingComments(node) : undefined
         });
     }
 
@@ -222,12 +230,32 @@ export class GenericChunker {
   }
 
   private getHeader(node: Parser.SyntaxNode, lines: string[]): string {
-    // Best effort: Return the first line of the node
+    if (!node || node.type === 'program') return '';
+
     const startRow = node.startPosition.row;
-    if (startRow < lines.length) {
-      return lines[startRow].trim();
+    const endRow = node.endPosition.row;
+    const totalLines = endRow - startRow + 1;
+    
+    // 1/4th of the content, capped at 50 lines
+    const limit = Math.min(Math.ceil(totalLines * 0.25), 50);
+    
+    return lines.slice(startRow, startRow + limit).join('\n').trim();
+  }
+
+  private getPrecedingComments(node: Parser.SyntaxNode): string {
+    let comments: string[] = [];
+    let current = node.previousSibling;
+
+    while (current) {
+      if (current.type === 'comment' || current.type === 'block_comment') {
+        comments.unshift(current.text);
+        current = current.previousSibling;
+      } else {
+        break;
+      }
     }
-    return '';
+    
+    return comments.join('\n');
   }
 
   private generateId(content: string, filePath: string, line: number): string {

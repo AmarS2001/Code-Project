@@ -94,7 +94,7 @@ importers:
         specifier: ^9.39.1
         version: 9.39.1
       '@types/node':
-        specifier: ^24.10.1
+        specifier: ^24.10.2
         version: 24.10.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.46.4

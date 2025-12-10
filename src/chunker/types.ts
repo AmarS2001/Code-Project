@@ -15,6 +15,12 @@ export interface Chunk {
   previous_chunk_id?: string;
   next_chunk_id?: string;
   
+  // Error information
+  error?: boolean;
+
+  // Comments preceding the chunk
+  comments?: string;
+  
   // Original parent type (e.g. "class_declaration") to help retrieval filtering
   parent_type?: string; 
 }
@@ -41,6 +47,8 @@ export function toTOON(chunk: Chunk): string {
     GROUP: chunk.group_id,
     BREADCRUMBS: chunk.path.length ? chunk.path.join(' > ') : undefined,
     CONTEXT: chunk.context_header,
+    COMMENTS: chunk.comments,
+    ERROR: chunk.error ? true : undefined,
     CONTENT: chunk.content
   });
 }

@@ -1,7 +1,7 @@
 import { GenericChunker } from './chunker/GenericChunker';
-import { Chunk, toTOON } from './chunker/types';
-import * as fs from 'fs/promises';
-import * as path from 'path';
+import { toTOON } from './chunker/types';
+import fs from 'fs/promises';
+import path from 'path';
 
 async function main() {
   const chunker = new GenericChunker({
@@ -11,7 +11,7 @@ async function main() {
   });
 
   // Test on the chunker file itself
-  const targetFile = path.resolve(process.cwd(), 'src/chunker/GenericChunker.ts');
+  const targetFile = path.resolve(process.cwd(), 'src/test/test.ts');
   console.log(`Chunking file: ${targetFile}`);
   
   try {
