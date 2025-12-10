@@ -1,0 +1,16 @@
+Goal : To build a Generic Chunker which chunks the code into semantic chunks.
+
+Idea: 
+  - I want to chunk the code into semantic chunks and at the end it will be indexed into a vector database and retrieved using LLM Rag.
+  - It should be similar quality respect to AI IDEs like Curosr etc..
+  - I want you to decide how the chunk should be created so that when the vector DB is queried with the help of a LLM then it should be able to retrieve the relevant code chunks.
+  - Example:
+      - Fetching the particular piece of code,
+      - Finding the approach 
+      - Fetching the code etc..
+  
+  - Approach
+    - Decide how each chunk should be created what keys you include etc..
+    - I want to implement it in generic way to handle any kind of programming lanugage using tree-sitter parser, for now consider JS code for the implementation.
+    - I want you to chunk the code DFS approach so that it should effectively parse large files containing code.
+    - Do not describe the what to chunk like describing the tree sitter node names already.. it should be generic so that it can handle any kind of programming language, do not depend on the tree sitter node names.
