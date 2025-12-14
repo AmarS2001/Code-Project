@@ -136,36 +136,70 @@ export class GenericChunker {
     };
   }
 
+  private getDefinitions(node: any): string[] {
+    const definitions: string[] = [];
+    
+    // Helper to check a single node
+    const checkNode = (n: any) => {
+        if (n.type === 'class_declaration' || n.type === 'function_declaration' || n.type === 'interface_declaration' || n.type === 'method_definition') {
+            const nameNode = n.childForFieldName('name');
+            if (nameNode) {
+                let defType = 'function';
+                if (n.type === 'class_declaration') defType = 'class';
+                if (n.type === 'interface_declaration') defType = 'interface';
+                if (n.type === 'method_definition') defType = 'method';
+                
+                definitions.push(`${defType} ${nameNode.text}`);
+            }
+        }
+    };
+
+    // Check the node itself
+    checkNode(node);
+
+    // Check direct children (don't go too deep to avoid noise from nested functions)
+    // We only want "top level" definitions for THIS chunk.
+    if (node.children) {
+        for (const child of node.children) {
+            checkNode(child);
+            // If the chunk is a program or block, we might want to look one level deeper?
+            // For now, direct children should cover most top-level definitions in a file/block.
+        }
+    }
+    
+    return definitions;
+  }
+
   private createChunkFromNode(node: Parser.SyntaxNode, lines: string[], contextPath: string[], filePath: string): Chunk {
     const content = node.text;
     const startLine = node.startPosition.row + 1;
-    const header = this.getHeader(node, lines);
+    // const header = this.getHeader(node, lines); // Not used locally anymore
+
+    // Get preceding comments
+    const comments = this.getPrecedingComments(node);
+
+    // Get context header from PARENT
+    // If node is program, parent is null. 
+    // If node is a top-level function, parent is program.
+    // We want the signature of the *container*.
+    const contextHeader = node.parent ? this.getHeader(node.parent, lines) : '';
     
-    // Heuristic: If we are creating a chunk from a node, the "context" is the *parent's* context.
-    // But `node.type` is potentially useful info. 
-    // `contextPath` passed in matches the *parent*.
-    
-    // Use the *parent's* header context for this chunk? 
-    // No, if this IS the chunk, it contains its own header.
-    // The context *external* to this chunk is what matters for retrieval (breadcrumbs).
-    // So context_header should come from the *parent* node if possible.
-    // But in the recursion, we computed `contextPath` from parents.
-    // We need the ACTUAL text header of the parent?
-    // Let's stick effectively to "Signature" of current + Breadcrumbs of parent.
-    
+    // Get definitions in this chunk
+    const definitions = this.getDefinitions(node);
 
     return {
       id: this.generateId(content, filePath, startLine),
-      content: content,
+      content,
       file_path: filePath,
-      language: 'unknown', // Set by caller or inferred
+      language: 'unknown',
       start_line: startLine,
       end_line: node.endPosition.row + 1,
       path: contextPath,
-      context_header: (contextPath.length > 0 && node.parent) ? this.getHeader(node.parent, lines) : '', 
-      // ^ Parent's context
+      context_header: contextHeader,
       error: node.hasError,
-      comments: this.getPrecedingComments(node),
+      comments: comments,
+      definitions: definitions,
+      parent_type: node.parent ? node.parent.type : undefined
     };
   }
 

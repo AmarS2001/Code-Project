@@ -23,6 +23,9 @@ export interface Chunk {
   
   // Original parent type (e.g. "class_declaration") to help retrieval filtering
   parent_type?: string; 
+
+  // Defined symbols in this chunk
+  definitions?: string[];
 }
 
 export interface ChunkerConfig {
@@ -47,8 +50,9 @@ export function toTOON(chunk: Chunk): string {
     GROUP: chunk.group_id,
     BREADCRUMBS: chunk.path.length ? chunk.path.join(' > ') : undefined,
     CONTEXT: chunk.context_header,
+    DEFINITIONS: chunk.definitions && chunk.definitions.length ? chunk.definitions.join(', ') : undefined,
     COMMENTS: chunk.comments,
-    ERROR: chunk.error ? true : undefined,
+    ERROR: chunk.error ? "CONTAINS SYNTAX ERROR !!!" : undefined,
     CONTENT: chunk.content
   });
 }
