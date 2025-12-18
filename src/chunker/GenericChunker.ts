@@ -220,7 +220,6 @@ export class GenericChunker {
         const line = nodeLines[i];
         if ((buffer.length + line.length) > this.config.maxChunkSize && buffer.length > 0) {
             // Flush
-            result.push({
                 id: this.generateId(buffer, filePath, nodeStartLine + startL),
                 content: buffer,
                 file_path: filePath,

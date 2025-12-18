@@ -22,11 +22,13 @@
     "sourceMap": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test",
+    "scripts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "src/test"
+    "test"
   ]
 }
