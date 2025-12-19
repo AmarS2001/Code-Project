@@ -26,6 +26,9 @@ export interface Chunk {
   breadcrumb?: string[]; 
 
   error?: string[]; 
+  
+  previousChunkSnippet?: string;
+  nextChunkSnippet?: string;
 }
 
 export class SemanticChunker {
@@ -69,6 +72,21 @@ export class SemanticChunker {
     this.traverse(tree.rootNode, filePath, code, [], chunks);
 
     tree.delete();
+
+    // Enrich with snippets for navigation
+    for (let i = 0; i < chunks.length; i++) {
+        if (i > 0) {
+            const prevLines = chunks[i-1].code.split('\n');
+            // Capture last 5 lines of previous chunk
+            chunks[i].previousChunkSnippet = prevLines.slice(-10).join('\n');
+        }
+        if (i < chunks.length - 1) {
+            const nextLines = chunks[i+1].code.split('\n');
+            // Capture first 5 lines of next chunk
+            chunks[i].nextChunkSnippet = nextLines.slice(0, 10).join('\n');
+        }
+    }
+
     return chunks;
   }
 

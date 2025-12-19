@@ -1,4 +1,4 @@
-import { SemanticChunker } from "./chunker/chunker";
+import { ChunkerManager } from "./chunker";
 import { Pipeline } from "./pipeline";
 import { ScanService } from "./pipeline/ScanService";
 
@@ -33,7 +33,7 @@ async function main(args: string[]) {
 
           console.log(`Found ${scanResult.accepted.length} files. Starting chunking...`);
 
-          const chunker = new SemanticChunker();
+          const chunker = new ChunkerManager();
           let totalChunks = 0;
           let filesChunked = 0;
           const startTime = Date.now();
@@ -45,8 +45,13 @@ async function main(args: string[]) {
               const content = await fs.readFile(filePath, 'utf-8');
               const chunks = await chunker.chunk(filePath, content);
 
-              console.log(chunks);
-              totalChunks += chunks.length;
+              console.log({chunks})
+
+              // chunks could be empty if file is empty
+              if (chunks && chunks.length > 0) {
+                 // console.log(chunks); // Verbose
+                 totalChunks += chunks.length;
+              }
               filesChunked++;
             } catch (err: any) {
               console.error(`Failed to chunk ${filePath}:`, err);
