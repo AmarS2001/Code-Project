@@ -124,6 +124,40 @@ export class ScanService {
     }
 
     /**
+     * Generator that yields accepted files one by one
+     */
+    async *scanStream(targetPath: string): AsyncIterableIterator<string> {
+        try {
+            const stats = await fs.stat(targetPath);
+
+            if (stats.isFile()) {
+                this.scannedCount++;
+                const result = await this.pipeline.process(targetPath);
+                if (result.allowed) {
+                    yield targetPath;
+                } else {
+                    // console.log(`❌ ${targetPath} - ${result.reason}`);
+                }
+            } else if (stats.isDirectory()) {
+                const dirResult = await this.pipeline.process(targetPath);
+                if (dirResult.allowed) {
+                    try {
+                        const entries = await fs.readdir(targetPath, { withFileTypes: true });
+                        for (const entry of entries) {
+                            const fullPath = path.join(targetPath, entry.name);
+                            yield* this.scanStream(fullPath);
+                        }
+                    } catch (err) {
+                        // ignore dir read errors
+                    }
+                }
+            }
+        } catch (error) {
+            // ignore access errors
+        }
+    }
+
+    /**
      * Reset scan state for a new scan
      */
     private reset(): void {

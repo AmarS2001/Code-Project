@@ -5,7 +5,6 @@ export const EXCLUDED_DIRS = [
   "node_modules",
   "vendor",
   "bower_components",
-  "packages",
   "deps",
 
   // --- Build / Output ---

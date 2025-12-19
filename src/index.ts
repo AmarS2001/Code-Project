@@ -19,37 +19,24 @@ async function main(args: string[]) {
       case 'chunk':
         {
           const targetPath = args[3];
-          console.log(`Scanning files in ${targetPath}...`);
+          console.log(`Scanning and chunking files in ${targetPath}...`);
           
-          // 1. Scan for files first
           const pipeline = Pipeline.createDefault();
           const scanner = new ScanService(pipeline);
-          const scanResult = await scanner.scan(targetPath);
-          
-          if (scanResult.accepted.length === 0) {
-            console.log('No files found to chunk.');
-            break;
-          }
-
-          console.log(`Found ${scanResult.accepted.length} files. Starting chunking...`);
-
           const chunker = new ChunkerManager();
+          const fs = await import('fs/promises'); // Dynamic import
+
           let totalChunks = 0;
           let filesChunked = 0;
           const startTime = Date.now();
-          const fs = await import('fs/promises');
 
-          // 2. Chunk each file
-          for (const filePath of scanResult.accepted) {
+          // Stream files using generator
+          for await (const filePath of scanner.scanStream(targetPath)) {
             try {
               const content = await fs.readFile(filePath, 'utf-8');
               const chunks = await chunker.chunk(filePath, content);
 
-              console.log({chunks})
-
-              // chunks could be empty if file is empty
               if (chunks && chunks.length > 0) {
-                 // console.log(chunks); // Verbose
                  totalChunks += chunks.length;
               }
               filesChunked++;
