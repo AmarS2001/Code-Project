@@ -38,6 +38,9 @@ importers:
       tree-sitter:
         specifier: ^0.25.0
         version: 0.25.0
+      web-tree-sitter:
+        specifier: ^0.26.3
+        version: 0.26.3
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.1
@@ -876,6 +879,9 @@ packages:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
+  web-tree-sitter@0.26.3:
+    resolution: {integrity: sha512-JIVgIKFS1w6lejxSntCtsS/QsE/ecTS00en809cMxMPxaor6MvUnQ+ovG8uTTTvQCFosSh4MeDdI5bSGw5SoBw==}
+
   whatwg-fetch@3.6.20:
     resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
 
@@ -1649,6 +1655,8 @@ snapshots:
   uuid@10.0.0: {}
 
   uuid@9.0.1: {}
+
+  web-tree-sitter@0.26.3: {}
 
   whatwg-fetch@3.6.20: {}
 
