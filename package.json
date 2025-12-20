@@ -28,9 +28,11 @@
   },
   "dependencies": {
     "@langchain/core": "^1.1.4",
+    "@langchain/mcp-adapters": "^1.1.1",
     "@langchain/ollama": "^1.0.3",
     "@langchain/openai": "^1.1.3",
     "@langchain/qdrant": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.25.1",
     "@qdrant/js-client-rest": "^1.16.2",
     "@toon-format/toon": "^2.1.0",
     "lang-map": "^0.4.0",
